@@ -1,0 +1,16 @@
+/* ==== Estilos de las tarjetas de productos ==== */
+.card-img-wrap {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+

@@ -1,0 +1,71 @@
+/* ======== circle-gallery.css ======== */
+/* Galería circular horizontal y centrada */
+
+.circle-gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.gallery-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: #333;
+}
+
+/* Fila horizontal centrada */
+.circle-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: nowrap;        /* una sola fila */
+    overflow-x: auto;         /* permite desplazarse horizontalmente */
+    overflow-y: hidden;       /* 🚫 bloquea el scroll vertical */
+    padding: 0 1rem;
+    width: 100%;
+    max-width: 1200px;
+    scroll-behavior: smooth;  /* desplazamiento suave opcional */
+}
+
+/* Cada ítem dentro de la fila */
+.circle-item {
+    flex: 0 0 auto; /* evita que se estiren o encogan */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.circle-img {
+    width: 100px;              /* antes 160px */
+    height: 100px;             /* antes 160px */
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;    /* borde más fino */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.circle-img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.circle-item p {
+    margin-top: 10px;           /* menos espacio debajo de la imagen */
+    font-size: 0.9rem;         /* texto ligeramente más pequeño */
+    font-weight: 600;
+    color: #555;
+}
+
+.circle-item.active .circle-img {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
+    transform: scale(1.05);
+}
+

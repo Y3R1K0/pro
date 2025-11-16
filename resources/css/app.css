@@ -1,11 +1,110 @@
-@import 'tailwindcss';
+/* Base */
+body {
+  background: #ffffff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+
+/* CARD */
+/* ===== Aumentar tamaño general de los cards ===== */
+.product-card {
+    height: 620px;              /* altura fija para todos los cards */
+    max-width: 460px;           /* ancho del card */
+    margin: 0 auto;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* distribuye imagen y contenido */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Imagen ===== */
+.card-img-wrap {
+    height: 500 px;              /* altura fija para todas las imágenes */
+    overflow: hidden;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;          /* llena el espacio */
+    object-position: center;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.08);
+}
+
+/* ===== Contenido ===== */
+.card-body {
+    padding: 1.5rem;
+    flex-grow: 1;               /* asegura que el texto use el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+/* ===== Botón ===== */
+.card-button {
+    padding: 0.75rem 1.25rem;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.card-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsivo: ajustar tamaños en pantallas más pequeñas */
+@media (max-width: 1200px) {
+  .product-card {
+    min-height: 500px;
+  }
+  .card-img-wrap {
+    height: 280px;
+  }
+}
+
+@media (max-width: 992px) {
+  .product-card {
+    min-height: 480px;
+  }
+  .card-img-wrap {
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    min-height: auto;
+    max-width: none;
+  }
+  .card-img-wrap {
+    height: 220px;
+  }
 }
