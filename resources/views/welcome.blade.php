@@ -105,29 +105,41 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <!-- === Sección de detalle de producto === -->
-<section id="product-detail" class="d-none py-5">
-  <div class="container">
-    <div class="row align-items-center">
-      <!-- Imagen grande -->
-      <div class="col-md-6 text-center">
-        <img id="detail-img" src="" class="img-fluid rounded shadow" alt="Producto seleccionado" style="max-height: 400px; object-fit: cover;">
-      </div>
+<div id="product-detail" class="d-none container py-5">
 
-      <!-- Información del producto -->
-      <div class="col-md-6">
-        <h3 id="detail-name" class="fw-bold mb-3"></h3>
-        <p id="detail-desc" class="text-muted mb-4"></p>
-        <h4 id="detail-price" class="text-primary mb-4"></h4>
+    <div class="row">
 
-        <div class="d-flex gap-3">
-          <button class="btn btn-dark">Comprar</button>
-          <button class="btn btn-outline-dark">Agregar al carrito</button>
+        <!-- Imagen grande -->
+        <div class="detail-main-wrap">
+            <img id="detail-img" class="img-fluid rounded shadow" alt="">
         </div>
 
-        <button id="close-detail" class="btn btn-link mt-4 text-danger">← Volver a productos</button>
-      </div>
+        <!-- Información del producto -->
+        <div class="col-md-6">
+
+            <h2 id="detail-name" class="fw-bold"></h2>
+
+            <p id="detail-price" class="text-primary fw-bold fs-4"></p>
+
+            <button class="btn btn-dark mb-2 w-100">Comprar</button>
+            <button class="btn btn-outline-dark mb-3 w-100">Añadir al carrito</button>
+
+            <p id="detail-desc" class="mt-3"></p>
+
+            <!-- Miniaturas dinámicas -->
+            <h5 class="mt-4 mb-2 fw-bold">Vistas adicionales</h5>
+            <div id="detail-thumbs" class="d-flex gap-2 flex-wrap"></div>
+
+            <!-- Botón cerrar -->
+            <button id="close-detail" class="btn btn-danger mt-4">Cerrar</button>
+
+        </div>
+
     </div>
-  </div>
+
+</div>
+
+
 </section>
 
 
@@ -138,26 +150,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 {{-- CARD 1 --}}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card"
-                data-category="pokemon"
-                data-name="Charmander Chibi"
-                data-price="S/ 35.00"
-                data-desc="Figura impresa en 3D de Charmander en estilo chibi, pintada a mano. Ideal para coleccionistas y fans de Pokémon."
-                data-image="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}">
-            
-            <div class="card h-100 shadow-sm">
-                <div class="card-img-wrap">
-                <img src="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}"
-                    class="card-img-top product-img"
-                    alt="Charmander Chibi">
-                </div>
+                    data-category="pokemon"
+                    data-name="Charmander Chibi"
+                    data-price="S/ 35.00"
+                    data-desc="Figura decorativa en estilo Chibi, ideal para coleccionistas."
+                    data-image="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}"
+                    data-image2="{{ asset('img/pokemon/charmander/charmander_chibi_2.jpg') }}"
+                    data-image3="{{ asset('img/pokemon/charmander/charmander_chibi_3.jpg') }}">
 
-                <div class="card-body d-flex flex-column justify-content-between text-center">
-                <h5 class="card-title">Charmander Chibi</h5>
-                <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                <button class="btn btn-dark btn-sm mt-2">Comprar</button>
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-img-wrap">
+                            <img src="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}"
+                                class="card-img-top product-img"
+                                alt="Soporte">
+                        </div>
+
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Charmander Chibi</h5>
+                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
+                            <button class="btn btn-dark btn-sm">Comprar</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
 
                 {{-- CARD 1 --}}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="pokemon">
@@ -378,32 +392,61 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', () => {
     const productCards = document.querySelectorAll('.product-card');
     const detailSection = document.getElementById('product-detail');
-    const gridSection = document.querySelector('.row.g-4'); // tu grilla de productos
+    const gridSection = document.querySelector('.row.g-4');
 
-    // Elementos dentro de la vista detalle
     const detailImg = document.getElementById('detail-img');
     const detailName = document.getElementById('detail-name');
     const detailPrice = document.getElementById('detail-price');
     const detailDesc = document.getElementById('detail-desc');
+    const detailThumbs = document.getElementById('detail-thumbs');
     const closeBtn = document.getElementById('close-detail');
 
-    // Cuando se hace clic en una imagen de producto
     productCards.forEach(card => {
         const img = card.querySelector('.product-img');
 
         img.addEventListener('click', () => {
+
+            // Rellenar datos principales
             detailImg.src = card.dataset.image;
             detailName.textContent = card.dataset.name;
             detailPrice.textContent = card.dataset.price;
             detailDesc.textContent = card.dataset.desc;
 
-            gridSection.classList.add('d-none');  // Oculta los cards
-            detailSection.classList.remove('d-none'); // Muestra el detalle
+            // Limpiar miniaturas anteriores
+            detailThumbs.innerHTML = '';
+
+            // Crear lista de imágenes
+            const images = [
+                card.dataset.image,
+                card.dataset.image2,
+                card.dataset.image3
+            ];
+
+            // Generar miniaturas dinámicamente
+            images.forEach(src => {
+                if (!src) return;
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.classList.add('img-thumbnail');
+                thumb.style.width = "80px";
+                thumb.style.cursor = "pointer";
+
+                // Al hacer clic en miniatura → cambia imagen grande
+                thumb.addEventListener('click', () => {
+                    detailImg.src = src;
+                });
+
+                detailThumbs.appendChild(thumb);
+            });
+
+            // Mostrar sección de detalle
+            gridSection.classList.add('d-none');
+            detailSection.classList.remove('d-none');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });
 
-    // Botón para cerrar el detalle
+    // Botón cerrar
     closeBtn.addEventListener('click', () => {
         detailSection.classList.add('d-none');
         gridSection.classList.remove('d-none');
