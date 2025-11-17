@@ -49,7 +49,15 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            @auth
+                                @if(Auth::user()->is_admin)
+                                    <li class="nav-item">
+                                        <a class="nav-link text-danger fw-bold" href="{{ route('admin.dashboard') }}">
+                                            Admin
+                                        </a>
+                                    </li>
+                                @endif
+                            @endauth
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>

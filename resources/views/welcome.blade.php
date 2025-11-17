@@ -25,33 +25,38 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
-                            </li>
+                        <ul class="navbar-nav ms-auto">
+                            @guest
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
-                            </li>
-                        @endguest
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">Registrarse</a>
+                                </li>
+                            @endguest
 
-                        @auth
-                            <li class="nav-item">
-                                <span class="nav-link fw-bold">
-                                    Hola, {{ Auth::user()->name }}
-                                </span>
-                            </li>
+                            @auth
+                                @if (Auth::user()->is_admin)
+                                    <li class="nav-item">
+                                        <a href="{{ route('admin.dashboard') }}" class="nav-link text-danger fw-bold">
+                                            ADMIN
+                                        </a>
+                                    </li>
+                                @endif
 
-                            <li class="nav-item">
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm">
-                                        Cerrar sesión
-                                    </button>
-                                </form>
-                            </li>
-                        @endauth
+                                <li class="nav-item">
+                                    <span class="nav-link fw-bold">Hola, {{ Auth::user()->name }}</span>
+                                </li>
 
+                                <li class="nav-item">
+                                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button class="btn btn-danger btn-sm ms-2">Cerrar sesión</button>
+                                    </form>
+                                </li>
+                            @endauth
+                        </ul>
                     </ul>
                 </ul>
             </div>
