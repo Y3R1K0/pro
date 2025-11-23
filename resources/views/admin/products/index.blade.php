@@ -9,6 +9,7 @@
         + Crear nuevo producto
     </a>
 
+
     <table class="table table-bordered table-striped">
         <thead class="table-dark">
             <tr>
@@ -29,7 +30,7 @@
                     <td>{{ $product->category }}</td>
                     <td>S/ {{ $product->price }}</td>
                     <td>
-                        <img src="{{ asset($product->image) }}" width="60" class="rounded">
+                        <img src="{{ asset('storage/' . $product->image) }}" width="60" class="rounded">
                     </td>
 
                     <td>

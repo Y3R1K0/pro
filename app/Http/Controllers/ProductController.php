@@ -8,7 +8,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::all();   //productos de la BD
         return view('welcome', compact('products'));
     }
 }

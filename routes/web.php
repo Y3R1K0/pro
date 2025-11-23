@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [ProductController::class, 'index']);
 
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

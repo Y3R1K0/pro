@@ -81,27 +81,27 @@
 
         {{-- === categorias === --}}
         <div class="circle-item" data-category="dc">
-            <img src="{{ asset('img/circle-gallery-logos/dc_logo.png') }}" alt="PLA" class="circle-img">
+            <img src="{{ asset('img/circle-gallery-logos/dc_logo.png') }}" class="circle-img">
             
         </div>
         <div class="circle-item" data-category="dragon_ball">
-            <img src="{{ asset('img/circle-gallery-logos/dragon_logo.png') }}" alt="ABS" class="circle-img">
+            <img src="{{ asset('img/circle-gallery-logos/dragon_logo.png') }}" class="circle-img">
             
         </div>
         <div class="circle-item" data-category="marvel">
-            <img src="{{ asset('img/circle-gallery-logos/marvel_logo.png') }}" alt="PETG" class="circle-img">
+            <img src="{{ asset('img/circle-gallery-logos/marvel_logo.png') }}" class="circle-img">
             
         </div>
         <div class="circle-item" data-category="pokemon">
-            <img src="{{ asset('img/circle-gallery-logos/pokemon_logo.png') }}" alt="Resina" class="circle-img">
+            <img src="{{ asset('img/circle-gallery-logos/pokemon_logo.png') }}" class="circle-img">
             
         </div>
         <div class="circle-item">
-            <img src="{{ asset('img/circle-gallery-logos/onepiece_logo.png') }}" alt="Resina" class="circle-img">
+            <img src="{{ asset('img/circle-gallery-logos/onepiece_logo.png') }}" class="circle-img">
             
         </div>
         <div class="circle-item">
-            <img src="{{ asset('img/circle-gallery-logos/onepiece_logo.png') }}" alt="Resina" class="circle-img">
+            <img src="{{ asset('img/circle-gallery-logos/onepiece_logo.png') }}" class="circle-img">
             
         </div>
     </div>
@@ -175,251 +175,47 @@ document.addEventListener('DOMContentLoaded', function () {
 </section>
 
 
- {{-- === PRODUCTOS === --}}
-    <section class="py-5">
-        <div class="container">
-             <div class="row justify-content-center g-4">
+ <section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center g-4">
 
-                {{-- CARD 1 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card"
-                    data-category="pokemon"
-                    data-name="Charmander Chibi"
-                    data-price="S/ 35.00"
-                    data-desc="Figura decorativa en estilo Chibi, ideal para coleccionistas."
-                    data-image="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}"
-                    data-image2="{{ asset('img/pokemon/charmander/charmander_chibi_2.jpg') }}"
-                    data-image3="{{ asset('img/pokemon/charmander/charmander_chibi_3.jpg') }}">
+            @foreach ($products as $product)
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" 
+                    data-category="{{ $product->category }}"
+                    data-image="{{ asset('storage/' . $product->image) }}"
+                    data-image2="{{ asset('storage/' . $product->image2) }}"
+                    data-image3="{{ asset('storage/' . $product->image3) }}"
+                    data-name="{{ $product->name }}"
+                    data-price="S/ {{ number_format($product->price, 2) }}"
+                    data-desc="{{ $product->description }}">
 
                     <div class="card h-100 shadow-sm">
                         <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}"
-                                class="card-img-top product-img"
-                                alt="Soporte">
+                            <img 
+                                src="{{ asset('storage/' . $product->image) }}" 
+                                class="card-img-top product-img" 
+                                alt="{{ $product->name }}"
+                            >
                         </div>
 
                         <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Charmander Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
+                            <h5 class="card-title">{{ $product->name }}</h5>
+
+                            <span class="fw-bold text-primary fs-5">
+                                S/ {{ number_format($product->price, 2) }}
+                            </span>
+
                             <button class="btn btn-dark btn-sm">Comprar</button>
                         </div>
                     </div>
                 </div>
-
-                {{-- CARD 1 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="pokemon">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Charmander Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 1 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="pokemon">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Charmander Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 1 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="pokemon">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/charmander/charmander_chibi_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Charmander Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 2 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3  product-card" data-category="marvel">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/eevee/eevee_ball_full.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Eevee Ball</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 2 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3  product-card" data-category="marvel">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/eevee/eevee_ball_full.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Eevee Ball</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 2 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3  product-card" data-category="marvel">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/eevee/eevee_ball_full.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Eevee Ball</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 2 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3  product-card" data-category="marvel">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/eevee/eevee_ball_full.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Eevee Ball</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-                
-
-                {{-- CARD 3 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dragon_ball">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/pichu/pichu_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Pichu</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>  
-                
-                {{-- CARD 3 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dragon_ball">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/pichu/pichu_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Pichu</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div> 
-
-                {{-- CARD 3 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dragon_ball">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/pichu/pichu_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Pichu</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div> 
-
-                {{-- CARD 3 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dragon_ball">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/pichu/pichu_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Pichu</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div> 
-
-                {{-- CARD 4 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dc">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/umbreon/umbreon_chibi_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Umbreon Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 4 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dc">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/umbreon/umbreon_chibi_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Umbreon Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 4 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dc">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/umbreon/umbreon_chibi_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Umbreon Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- CARD 4 --}}
-                <div class="col-12 col-sm-6 col-md-4 col-lg-3 product-card" data-category="dc">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-img-wrap">
-                            <img src="{{ asset('img/pokemon/umbreon/umbreon_chibi_1.jpg') }}" class="card-img-top product-img" alt="Soporte">
-                        </div>
-                       <div class="card-body d-flex flex-column justify-content-between">
-                            <h5 class="card-title">Umbreon Chibi</h5>
-                            <span class="fw-bold text-primary fs-5">S/ 35.00</span>
-                            <button class="btn btn-dark btn-sm">Comprar</button>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
 
 
-            </div>
         </div>
-    </section>
+    </div>
+</section>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const productCards = document.querySelectorAll('.product-card');

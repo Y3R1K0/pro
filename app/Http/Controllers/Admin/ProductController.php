@@ -19,22 +19,32 @@ class ProductController extends Controller
         return view('admin.products.create');
     }
 
+    public function cat()
+    {
+        return view('admin.products.cat');
+    }
+
     public function store(Request $request)
     {
         $data = $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
-            'category' => 'nullable',
+            'category' => 'required',
             'description' => 'nullable',
             'image' => 'nullable|image',
             'image2' => 'nullable|image',
             'image3' => 'nullable|image',
         ]);
 
+        // Carpeta dinámica: categoría + nombre del producto
+        $categoryFolder = $data['category'];
+        $productFolder = $data['name'];  // nombre del producto
+        $finalFolder = "uploads/products/{$categoryFolder}/{$productFolder}";
+
         // Guardar imágenes
         foreach (['image', 'image2', 'image3'] as $field) {
             if ($request->hasFile($field)) {
-                $data[$field] = $request->file($field)->store('uploads/products', 'public');
+                $data[$field] = $request->file($field)->store($finalFolder, 'public');
             }
         }
 
