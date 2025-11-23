@@ -2,23 +2,27 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CategoryController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Página principal (tienda)
+Route::get('/', [ProductController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/', [ProductController::class, 'index']);
+// Rutas del panel admin
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
 
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+        // CRUD Productos
+        Route::resource('products', AdminProductController::class);
 
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('dashboard');
-
-    // CRUD de productos
-    Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
-
-});
+        // CRUD Categorías
+        Route::resource('categories', CategoryController::class)->except(['show']);
+    });

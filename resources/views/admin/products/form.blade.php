@@ -26,7 +26,7 @@
     <input type="file" name="image" class="form-control">
 
     @if(isset($product))
-        <img src="{{ asset($product->image) }}" width="100" class="mt-2 rounded shadow">
+        <img src="{{ asset('storage/' . $product->image) }}" width="100" class="mt-2 rounded shadow">
     @endif
 </div>
 
@@ -35,7 +35,7 @@
     <input type="file" name="image2" class="form-control">
 
     @if(isset($product) && $product->image2)
-        <img src="{{ asset($product->image2) }}" width="100" class="mt-2 rounded shadow">
+        <img src="{{ asset('storage/' . $product->image2) }}" width="100" class="mt-2 rounded shadow">
     @endif
 </div>
 
@@ -44,6 +44,6 @@
     <input type="file" name="image3" class="form-control">
 
     @if(isset($product) && $product->image3)
-        <img src="{{ asset($product->image3) }}" width="100" class="mt-2 rounded shadow">
+        <img src="{{ asset('storage/' . $product->image3) }}" width="100" class="mt-2 rounded shadow">
     @endif
 </div>
