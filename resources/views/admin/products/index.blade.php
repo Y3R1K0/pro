@@ -17,6 +17,7 @@
                 <th>Nombre</th>
                 <th>Categoría</th>
                 <th>Precio</th>
+                <th>Stock</th>  <!-- AGREGADO -->
                 <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
@@ -29,6 +30,7 @@
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->category }}</td>
                     <td>S/ {{ $product->price }}</td>
+                    <td>{{ $product->stock }}</td>  <!-- AGREGADO -->
                     <td>
                         <img src="{{ asset('storage/' . $product->image) }}" width="60" class="rounded">
                     </td>

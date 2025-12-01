@@ -7,7 +7,7 @@
 
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-danger text-white fw-bold text-center">
-                    Panel de Administrador 
+                    Panel de Administrador
                 </div>
 
                 <div class="card-body text-center">
@@ -18,9 +18,15 @@
                         Aquí podrás gestionar productos, categorías y más.
                     </p>
 
-                    <a href="{{ url('/admin/products') }}" class="btn btn-outline-danger px-4">
-                        Gestionar Productos
-                    </a>
+                    <div class="d-flex justify-content-center mb-3">
+                        <a href="{{ route('admin.products.index') }}" class="btn btn-outline-danger px-4 mx-2">
+                            Gestionar Productos
+                        </a>
+
+                        <a href="{{ url('/') }}" class="btn btn-outline-primary px-4 mx-2">
+                            Ir a la tienda
+                        </a>
+                    </div>
 
                 </div>
 

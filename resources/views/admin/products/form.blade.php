@@ -22,6 +22,12 @@
 </div>
 
 <div class="mb-3">
+    <label class="form-label">Stock</label>  <!-- AGREGADO -->
+    <input type="number" name="stock" class="form-control" min="0"
+           value="{{ old('stock', $product->stock ?? 0) }}" required>
+</div>
+
+<div class="mb-3">
     <label class="form-label">Imagen principal</label>
     <input type="file" name="image" class="form-control">
 
