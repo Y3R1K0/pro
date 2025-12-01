@@ -20,7 +20,7 @@
 </head>
 <body class="bg-light">
 
-    {{-- === HEADER === --}}
+    {{-- === HEADER === ----}}
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="#">MARCA</a>
